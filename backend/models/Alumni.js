@@ -7,4 +7,4 @@ const alumniSchema = new mongoose.Schema({
     placement: { type: String },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Alumni', alumniSchema);
+module.exports = mongoose.model('Alumni', alumniSchema, 'Alumnis');
