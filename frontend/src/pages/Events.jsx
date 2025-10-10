@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { eventsApi } from "../lib/api";
+import { Calendar, MapPin, Clock } from "lucide-react";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -49,29 +50,32 @@ const Events = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-10">
-      <h2 className="text-2xl md:text-3xl font-bold text-blue-700 mb-6 text-center">
+    <div className="max-w-6xl mx-auto px-6 py-10">
+      <h2 className="text-3xl font-bold text-blue-700 mb-8 text-center">
         Upcoming Events
       </h2>
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="flex flex-wrap justify-center gap-6">
         {events.map((event) => (
           <div
             key={event._id}
-            className="bg-white rounded-xl shadow-md border border-gray-200 p-5 hover:shadow-lg transition-all duration-200"
+            className="w-72 bg-white rounded-xl shadow-md border border-gray-200 p-5 flex flex-col justify-between hover:shadow-lg transition-transform transform hover:-translate-y-1"
           >
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">
-              {event.title}
-            </h3>
-            <p className="text-gray-600 text-sm mb-2">
-              {event.description}
-            </p>
-            <p className="text-gray-500 text-xs">
-              📍 {event.location || "HITK Campus"}
-            </p>
-            <p className="text-blue-600 text-xs mt-2">
-              🕒 {formatDate(event.date)}
-            </p>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                {event.title}
+              </h3>
+              <p className="text-gray-600 text-sm mb-3">{event.description}</p>
+            </div>
+
+            <div className="mt-3 space-y-2">
+              <p className="flex items-center text-gray-500 text-sm gap-1">
+                <MapPin size={16} /> {event.location || "HITK Campus"}
+              </p>
+              <p className="flex items-center text-blue-600 text-sm gap-1">
+                <Clock size={16} /> {formatDate(event.date)}
+              </p>
+            </div>
           </div>
         ))}
       </div>

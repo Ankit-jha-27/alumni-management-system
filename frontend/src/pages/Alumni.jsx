@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { alumniApi } from "../lib/api";
+import {RefreshCcw } from "lucide-react";
 
 const placementCategories = [
   "TCS",
@@ -14,8 +15,7 @@ const placementCategories = [
   "Accenture",
   "Capgemini",
   "Cognizant",
-  "Zoho"
-
+  "Zoho",
 ];
 
 export default function Alumni() {
@@ -47,50 +47,68 @@ export default function Alumni() {
   }, []);
 
   return (
-    <div className="space-y-6">
-      <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Alumni Placement Details</h1>
-        <button
-          type="button"
-          onClick={fetchAlumni}
-          className="border px-4 py-2 rounded"
-          disabled={loading}
-        >
-          Refresh
-        </button>
+    <div className="space-y-8">
+      {/* Header */}
+      <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <h1 className="text-3xl font-bold text-blue-700">Alumni Placement Details</h1>
+        <div className="flex items-center gap-3">
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 transition-all"
+          >
+            <option>All</option>
+            {["Unspecified", ...placementCategories].map((c) => (
+              <option key={c}>{c}</option>
+            ))}
+          </select>
+
+          <button
+            onClick={fetchAlumni}
+            disabled={loading}
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow-md transition-all disabled:opacity-50"
+          >
+            <RefreshCcw size={16} />
+            {loading ? "Refreshing..." : "Refresh"}
+          </button>
+        </div>
       </header>
 
-      <section className="flex items-center gap-3">
-        <span className="text-sm text-gray-600">Filter by placement:</span>
-        <select
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          className="border rounded px-3 py-2"
-        >
-          <option>All</option>
-          {["Unspecified", ...placementCategories].map((c) => (
-            <option key={c}>{c}</option>
-          ))}
-        </select>
-      </section>
-
-      {error && <div className="text-red-600">{error}</div>}
-      {loading && <div>Loading...</div>}
-
-      {!loading && filtered.length === 0 && (
-        <div className="text-gray-600">No alumni found.</div>
+      {/* Error */}
+      {error && (
+        <div className="text-red-500 bg-red-50 px-4 py-2 rounded-lg">{error}</div>
       )}
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filtered.map((a) => (
-          <article key={a._id} className="bg-white shadow rounded p-4 space-y-1">
-            <h3 className="font-semibold">{a.name}</h3>
-            <div className="text-sm text-gray-600">{a.email}</div>
-            {a.batch && <div className="text-sm">Batch: {a.batch}</div>}
-            <div className="text-sm">Placement: {a.placement || "Unspecified"}</div>
-          </article>
-        ))}
-      </section>
+   
+
+      
+      {!loading && filtered.length === 0 && !error && (
+        <div className="text-center text-gray-600 py-10">
+          <p className="text-lg">No alumni found.</p>
+          <p className="text-sm">Try changing the placement filter or refresh.</p>
+        </div>
+      )}
+
+      {/* Alumni Cards */}
+      {!loading && filtered.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-6">
+          {filtered.map((a) => (
+            <article
+              key={a._id}
+              className="bg-white shadow rounded-xl p-5 w-72 flex flex-col justify-between hover:shadow-lg transition-transform transform hover:-translate-y-1"
+            >
+              <div>
+                <h3 className="font-semibold text-lg text-gray-800 mb-1">{a.name}</h3>
+                <p className="text-sm text-gray-600">{a.email}</p>
+                {a.batch && <p className="text-sm text-gray-600">Batch: {a.batch}</p>}
+                <p className="text-sm text-gray-600">Placement: {a.placement || "Unspecified"}</p>
+              </div>
+
+        
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

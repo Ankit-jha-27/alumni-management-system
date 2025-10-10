@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react"; // for hamburger icon
+import { Menu, X } from "lucide-react";
 import logo from "../assets/cl.jpg";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const linkBase =
-    "block px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200";
-  const linkActive =
-    "bg-blue-600 text-white shadow-md hover:bg-blue-700";
-  const linkInactive =
-    "text-gray-700 hover:bg-blue-100 hover:text-blue-700";
 
   const navLinks = [
     { name: "Home", to: "/" },
@@ -21,32 +14,32 @@ const Navbar = () => {
     { name: "Notifications", to: "/notifications" },
   ];
 
+  const linkClass = ({ isActive }) =>
+    `block px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+      isActive ? "bg-blue-600 text-white shadow-md" : "text-gray-700 hover:bg-blue-100 hover:text-blue-700"
+    }`;
+
   return (
-    <nav className="bg-white/90 backdrop-blur shadow-md sticky top-0 z-50">
+    <nav className="bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo and Title */}
-          <div className="flex items-center gap-2">
+          
+          {/* Logo */}
+          <div className="flex items-center gap-3">
             <img
               src={logo}
               alt="Department Logo"
               className="w-10 h-10 rounded-full object-cover border border-blue-300 shadow-sm"
             />
-            <span className="text-sm md:text-xl font-bold text-blue-700 tracking-tight">
-              IT Dept. Alumni Management
+            <span className="font-bold text-blue-700 text-sm md:text-xl tracking-tight">
+              IT Dept. Alumni Portal
             </span>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center gap-4">
             {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.to}
-                className={({ isActive }) =>
-                  `${linkBase} ${isActive ? linkActive : linkInactive}`
-                }
-              >
+              <NavLink key={link.name} to={link.to} className={linkClass}>
                 {link.name}
               </NavLink>
             ))}
@@ -63,17 +56,13 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden mt-2 bg-white border rounded-lg shadow-sm">
+          <div className="md:hidden mt-2 bg-white border rounded-lg shadow-md animate-slide-down">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.to}
-                onClick={() => setMenuOpen(false)} // close menu on click
-                className={({ isActive }) =>
-                  `${linkBase} ${
-                    isActive ? linkActive : linkInactive
-                  }`
-                }
+                onClick={() => setMenuOpen(false)}
+                className={linkClass}
               >
                 {link.name}
               </NavLink>
