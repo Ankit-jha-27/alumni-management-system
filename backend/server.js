@@ -9,6 +9,7 @@ const alumniRoutes = require('./routes/alumniRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 app.use(cors());
@@ -22,6 +23,7 @@ app.use('/api/alumni', alumniRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => res.send('API is running successfully 🚀'));
 

@@ -1,3 +1,6 @@
+export const authApi = {
+  signup: (payload) => api.post("/auth/signup", payload),
+};
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "/api";
 
 async function request(path, options = {}) {
