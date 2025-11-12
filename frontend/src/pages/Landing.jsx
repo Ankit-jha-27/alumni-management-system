@@ -47,6 +47,13 @@ const Landing = () => {
               >
                 Register as Faculty, Student, or Alumni
               </a>
+
+              <a
+                href="/login"
+                className="inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-transform transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:bg-cyan-500 dark:hover:bg-cyan-400 dark:text-gray-900"
+              >
+                Sign In
+              </a>
             </div>
 
             <div className="mt-8 text-sm text-blue-600 dark:text-gray-400">
