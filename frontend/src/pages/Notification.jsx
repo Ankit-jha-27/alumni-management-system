@@ -42,29 +42,26 @@ const Notification = () => {
         </div>
       )}
 
-      <div className="space-y-4">
+      <section className="flex flex-wrap justify-center gap-8">
         {notifications.map((note) => (
-          <div
+          <article
             key={note._id}
-            className="bg-white shadow-md rounded-xl p-4 border border-gray-100 hover:shadow-lg transition-all duration-200"
+            className="bg-gradient-to-br from-blue-50 via-white to-cyan-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-2xl shadow-2xl hover:shadow-cyan-400/40 transition-transform transform hover:-translate-y-2 p-6 border border-blue-200 dark:border-gray-700 w-80 flex flex-col justify-between"
           >
-            <h2 className="text-lg font-semibold text-blue-700">
-              {note.title}
-            </h2>
-            <p className="text-gray-700 text-sm mt-1">{note.message}</p>
+            <h2 className="font-bold text-xl text-blue-700 dark:text-cyan-300 mb-2">{note.title}</h2>
+            <p className="text-gray-700 text-sm mt-1 dark:text-gray-300">{note.message}</p>
             <div className="text-xs text-gray-500 mt-2">
               {note.sentAt
-              ? new Date(note.sentAt).toLocaleDateString("en-IN", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-      })
-    : "Unknown date"}
-</div>
-
-          </div>
+                ? new Date(note.sentAt).toLocaleDateString("en-IN", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })
+                : "Unknown date"}
+            </div>
+          </article>
         ))}
-      </div>
+      </section>
     </div>
   );
 };

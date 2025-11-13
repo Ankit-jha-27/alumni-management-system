@@ -55,19 +55,16 @@ const Events = () => {
         Upcoming Events
       </h2>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      <section className="flex flex-wrap justify-center gap-8">
         {events.map((event) => (
-          <div
+          <article
             key={event._id}
-            className="w-72 bg-white rounded-xl shadow-md border border-gray-200 p-5 flex flex-col justify-between hover:shadow-lg transition-transform transform hover:-translate-y-1"
+            className="bg-gradient-to-br from-blue-50 via-white to-cyan-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-2xl shadow-2xl hover:shadow-cyan-400/40 transition-transform transform hover:-translate-y-2 p-6 border border-blue-200 dark:border-gray-700 w-80 flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                {event.title}
-              </h3>
-              <p className="text-gray-600 text-sm mb-3">{event.description}</p>
+              <h3 className="font-bold text-xl text-blue-700 dark:text-cyan-300 mb-2">{event.title}</h3>
+              <p className="text-gray-600 text-sm mb-3 dark:text-gray-300">{event.description}</p>
             </div>
-
             <div className="mt-3 space-y-2">
               <p className="flex items-center text-gray-500 text-sm gap-1">
                 <MapPin size={16} /> {event.location || "HITK Campus"}
@@ -76,9 +73,9 @@ const Events = () => {
                 <Clock size={16} /> {formatDate(event.date)}
               </p>
             </div>
-          </div>
+          </article>
         ))}
-      </div>
+      </section>
     </div>
   );
 };

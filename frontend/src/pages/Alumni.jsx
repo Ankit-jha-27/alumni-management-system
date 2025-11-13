@@ -52,17 +52,6 @@ export default function Alumni() {
       <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <h1 className="text-3xl font-bold text-blue-700">Alumni Placement Details</h1>
         <div className="flex items-center gap-3">
-          <select
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 transition-all"
-          >
-            <option>All</option>
-            {["Unspecified", ...placementCategories].map((c) => (
-              <option key={c}>{c}</option>
-            ))}
-          </select>
-
           <button
             onClick={fetchAlumni}
             disabled={loading}
@@ -91,23 +80,21 @@ export default function Alumni() {
 
       {/* Alumni Cards */}
       {!loading && filtered.length > 0 && (
-        <div className="flex flex-wrap justify-center gap-6">
+        <section className="flex flex-wrap justify-center gap-8">
           {filtered.map((a) => (
             <article
               key={a._id}
-              className="bg-white shadow rounded-xl p-5 w-72 flex flex-col justify-between hover:shadow-lg transition-transform transform hover:-translate-y-1"
+              className="bg-gradient-to-br from-blue-50 via-white to-cyan-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-2xl shadow-2xl hover:shadow-cyan-400/40 transition-transform transform hover:-translate-y-2 p-6 border border-blue-200 dark:border-gray-700 w-80 flex flex-col justify-between"
             >
               <div>
-                <h3 className="font-semibold text-lg text-gray-800 mb-1">{a.name}</h3>
-                <p className="text-sm text-gray-600">{a.email}</p>
-                {a.batch && <p className="text-sm text-gray-600">Batch: {a.batch}</p>}
-                <p className="text-sm text-gray-600">Placement: {a.placement || "Unspecified"}</p>
+                <h3 className="font-bold text-xl text-blue-700 dark:text-cyan-300 mb-2">{a.name}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{a.email}</p>
+                {a.batch && <p className="text-sm text-gray-700 dark:text-gray-400"><span className="font-semibold">Batch:</span> {a.batch}</p>}
+                <p className="text-sm text-gray-700 dark:text-gray-400"><span className="font-semibold">Placement:</span> {a.placement || "Unspecified"}</p>
               </div>
-
-        
             </article>
           ))}
-        </div>
+        </section>
       )}
     </div>
   );

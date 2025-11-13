@@ -53,11 +53,13 @@ export default function Projects(props) {
             className="border border-gray-300 bg-white text-gray-800 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 transition-all"
           >
             <option>All</option>
-            {["Miscellaneous", ...categories].map((c) => (
-              <option key={c}>{c}</option>
-            ))}
+            <option>AI</option>
+            <option>Web</option>
+            <option>Mobile</option>
+            <option>Data Science</option>
+            <option>ML</option>
+            <option>Cyber Security</option>
           </select>
-
           <button
             onClick={fetchProjects}
             disabled={loading}
@@ -66,17 +68,6 @@ export default function Projects(props) {
             <RefreshCcw size={16} />
             {loading ? "Refreshing..." : "Refresh"}
           </button>
-
-          {/* Domain pages navigation */}
-          {categories.map((domain) => (
-            <button
-              key={domain}
-              onClick={() => navigate(`/projects/${domain.toLowerCase().replace(/\s+/g, "-")}`)}
-              className="px-3 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold shadow hover:scale-105 transition-all"
-            >
-              {domain}
-            </button>
-          ))}
         </div>
       </header>
 
