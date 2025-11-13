@@ -7,7 +7,7 @@ const Navbar = ({ user, onLogout }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Home", to: "/" },
+    { name: "Dashboard", to: "/dashboard" },
     { name: "Projects", to: "/projects" },
     { name: "Alumni", to: "/alumni" },
     { name: "Events", to: "/events" },
