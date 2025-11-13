@@ -26,35 +26,9 @@ const Landing = () => {
               in mind.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="/projects"
-                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-transform transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:bg-cyan-500 dark:hover:bg-cyan-400 dark:text-gray-900"
-              >
-                Explore Projects
-              </a>
 
-              <a
-                href="/alumni"
-                className="inline-block border border-blue-200 text-blue-700 hover:bg-blue-50 px-5 py-3 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
-              >
-                View Alumni
-              </a>
 
-              <a
-                href="/signup"
-                className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-transform transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400 dark:bg-green-500 dark:hover:bg-green-400 dark:text-gray-900"
-              >
-                Register as Faculty, Student, or Alumni
-              </a>
 
-              <a
-                href="/login"
-                className="inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-transform transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:bg-cyan-500 dark:hover:bg-cyan-400 dark:text-gray-900"
-              >
-                Sign In
-              </a>
-            </div>
 
             <div className="mt-8 text-sm text-blue-600 dark:text-gray-400">
               <span className="font-medium text-blue-700 dark:text-gray-200">Tip:</span> Switch to the
